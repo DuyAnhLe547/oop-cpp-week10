@@ -1,0 +1,98 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define MAX 20
+
+class food{
+    public:
+        int id;
+        string name;
+        double price;
+        int quantity;
+
+};
+
+class inforFood{
+    public:
+        food a[MAX];
+        int len;
+        
+        void inforFirst(){
+            cout << "nhap so luong do an: ";
+            cin >> len;
+        }
+        
+        void inputFood(){
+            cout << "nhap danh sach mon an: ";
+            for(int i = 0; i < len; i++){
+                cout << "nhap ten mon an: ";
+                cin >> a[i].name;
+                cout << "nhap id mon an: ";
+                cin >> a[i].id;
+                cout << "nhap gia mon an: ";
+                cin >> a[i].price;
+                cout << "nhap so luong mon an: ";
+                cin >> a[i].quantity;
+            }
+        }
+
+        void displayFood(){
+            cout << "thong tin cac mon an: ";
+            for(int i = 0; i < len; i++){
+                cout << "Mon thu " << i + 1 << endl;
+                cout << a[i].name << endl;
+                cout << a[i].id << endl;
+                cout << a[i].price << endl;
+                cout << a[i].quantity << endl;
+            }
+        }
+
+        void findFood(){
+            string name;
+            cout << "Nhap ten mon an can tim: ";
+            cin >> name;
+
+            for(int i = 0; i < len; i++){
+                if(a[i].name == name){
+                    cout << "Tim thay mon an:" << endl;
+                    cout << a[i].name << endl;
+                    cout << a[i].id << endl;
+                    cout << a[i].price << endl;
+                    cout << a[i].quantity << endl;
+                    return;
+                }
+            }
+
+    cout << "Khong tim thay mon an" << endl;
+}
+
+        int updatePrice(){
+            int ID;
+            cout << "Nhap ID mon an can cap nhat: ";
+            cin >> ID;
+
+            for (int i = 0; i < len; i++)
+            {
+                if (a[i].id == ID)
+                {
+                    cout << "Nhap gia moi: ";
+                    cin >> a[i].price;
+
+                    return 1;
+                }
+            }
+
+            cout << "khong tim thay mon an" << endl;
+            return 0;
+        }
+};
+
+int main(){
+    inforFood b;
+    b.inforFirst();
+    b.inputFood();
+    b.displayFood();
+    b.findFood();
+    b.updatePrice();
+}
