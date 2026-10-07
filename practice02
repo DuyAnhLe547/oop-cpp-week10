@@ -1,0 +1,114 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+#define MAX 20
+class Food{
+    private:
+        int id;
+        string name;
+        double price;
+        int quantity;
+    public:
+        void inputFood();
+        Food(int id = 0, string name = "", double price = 0, int quantity = 0);
+        void display();
+        void updatePrice(double newPrice);
+        bool updateQuantity(int num);
+        bool checkAvailable();
+        double getprice();
+        int getquantity();
+        
+
+
+
+        
+};
+
+Food::Food(int id, string name, double price, int quantity){
+    this->id = id;
+    this->name = name;
+    this->price = price;
+    this->quantity = quantity;
+}
+
+void Food::inputFood(){
+    cout << "nhap danh sach mon an: ";
+    cout << "nhap id mon an: "; cin >> id;
+    cout << "nhap ten mon an: "; getline(cin >> ws, name);
+    cout << "nhap gia mon an: "; cin >> price;
+    cout << "nhap so luong mon an: "; cin >> quantity;
+}
+
+void Food::display(){
+    cout << "DANH SACH MON AN" << endl;
+    cout << id << " - " << name << " -  Gia: " << price << " - So Luong: " << quantity << endl; 
+
+}
+
+void Food::updatePrice(double newPrice){
+    if (newPrice > 0)
+    {
+        price = newPrice;
+        cout << "Cap nhat gia thanh cong" << endl;
+    }
+    else
+    {
+        cout << "Gia moi phai lon hon 0" << endl;
+    }
+}
+
+bool Food::updateQuantity(int num){
+    if(num  > 0 && quantity >= num){
+        quantity -= num;
+        return true;
+    }
+    return false;
+}
+
+bool Food::checkAvailable(){
+    return quantity > 0;
+
+}
+
+double Food::getprice(){
+    return price;
+}
+
+int Food::getquantity(){
+    return quantity;
+}
+
+
+
+int main(){
+    Food food;
+
+    food.inputFood();
+
+    cout << "thong tin mon an ban dau:" << endl;
+    food.display();
+
+    double newPrice;
+    cout << "\nnhap gia moi: ";
+    cin >> newPrice;
+
+    food.updatePrice(newPrice);
+
+    cout << "\nthong tin sau khi cap nhat:\n";
+    food.display();
+
+    cout << "gia hien tai: " << food.getprice() << endl;
+    cout << "so luong hien tai: " << food.getquantity() << endl;
+
+    if (food.checkAvailable())
+    {
+        cout << "mon an con hang" << endl;
+    }
+    else
+    {
+        cout << "mon an het hang" << endl;
+    }
+
+    return 0;
+}
